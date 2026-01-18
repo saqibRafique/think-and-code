@@ -1,0 +1,43 @@
+<header class="header">
+    <div class="container header__inner">
+        <a class="brand" href="" (click)="scrollToTop($event)">
+            <span class="brand__mark" aria-hidden="true">
+                <img src="assets/logo/thinkandcodelogo.png" alt="" width="38" height="38" loading="eager"
+                    decoding="async" />
+            </span>
+
+            <span class="brand__text">
+                <span class="brand__name">{{ content.brand.name }}</span>
+                <span class="brand__tag">{{ content.brand.tagline }}</span>
+            </span>
+        </a>
+
+        <!-- Desktop nav -->
+        <nav class="nav nav--desktop" aria-label="Primary navigation">
+            <a *ngFor="let item of content.nav" class="nav__link" href="" (click)="onNavClick(item, $event)">
+                {{ item.label }}
+            </a>
+
+            <a class="nav__cta" href="" (click)="goTo('contact', $event)">Get in touch</a>
+        </nav>
+
+        <button class="hamburger" type="button" (click)="toggle()" [attr.aria-expanded]="open()"
+            aria-controls="mobile-drawer" aria-label="Open menu">
+            <span class="hamburger__bar"></span>
+            <span class="hamburger__bar"></span>
+            <span class="hamburger__bar"></span>
+        </button>
+    </div>
+
+    <div class="backdrop" *ngIf="open()" (click)="close()" aria-hidden="true"></div>
+
+    <nav *ngIf="open()" id="mobile-drawer" class="drawer" aria-label="Mobile navigation">
+        <a *ngFor="let item of content.nav" class="drawer__link" href="" (click)="onNavClick(item, $event)">
+            {{ item.label }}
+        </a>
+
+        <a class="drawer__cta" href="" (click)="goTo('contact', $event)">
+            Get in touch
+        </a>
+    </nav>
+</header>

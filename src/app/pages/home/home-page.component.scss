@@ -1,0 +1,343 @@
+/* ===============================
+   Base / Layout
+================================ */
+
+:host {
+    display: block;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 20px 16px;
+}
+
+.page {
+    min-height: calc(100vh - 72px);
+}
+
+/* ===============================
+   Hero
+================================ */
+
+.hero {
+    display: grid;
+    gap: 18px;
+    align-items: start;
+    grid-template-columns: 1fr;
+    margin-top: 18px;
+}
+
+.kicker {
+    opacity: 0.75;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.h1 {
+    font-size: clamp(30px, 4.4vw, 52px);
+    line-height: 1.08;
+    margin: 6px 0 10px;
+}
+
+.sub {
+    opacity: 0.82;
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 58ch;
+}
+
+.hero__actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+}
+
+/* Mobile: buttons should not look cramped */
+@media (max-width: 420px) {
+    .hero__actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+/* ===============================
+   Sections & Typography
+================================ */
+
+.section {
+    padding-top: 46px;
+    margin-top: 0;
+}
+
+.h2 {
+    font-size: 24px;
+    margin: 0 0 14px;
+}
+
+.h3 {
+    font-size: 16px;
+    margin: 0 0 8px;
+}
+
+.p {
+    opacity: 0.82;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ===============================
+   Grid & Cards
+================================ */
+
+.grid {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: 1fr;
+}
+
+.grid--2 {
+    grid-template-columns: 1fr;
+}
+
+.card {
+    width: 100%;
+    min-width: 0;
+    /* ✅ prevents overflow in grid/flex contexts */
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: linear-gradient(180deg,
+            rgba(255, 255, 255, 0.08),
+            rgba(255, 255, 255, 0.04));
+    padding: 16px;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(10px) saturate(140%);
+    -webkit-backdrop-filter: blur(10px) saturate(140%);
+}
+
+/* ===============================
+   Lists & Chips
+================================ */
+
+.list {
+    margin: 0;
+    padding-left: 18px;
+    opacity: 0.85;
+}
+
+.list li {
+    margin: 6px 0;
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.chip {
+    padding: 8px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.06);
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+/* ===============================
+   Buttons
+================================ */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 11px 16px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.92);
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        background 0.15s ease,
+        border-color 0.15s ease;
+}
+
+.btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+}
+
+.btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.btn--primary {
+    background: linear-gradient(135deg,
+            rgba(80, 160, 255, 0.45),
+            rgba(200, 120, 255, 0.38));
+}
+
+.btn--primary:hover:not(:disabled) {
+    background: linear-gradient(135deg,
+            rgba(90, 170, 255, 0.6),
+            rgba(210, 130, 255, 0.55));
+}
+
+.btn--ghost {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* ===============================
+   Timeline
+================================ */
+
+.timeline {
+    list-style: none;
+    padding-left: 6px;
+    margin: 0;
+    display: grid;
+    gap: 12px;
+}
+
+.timeline__item {
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    gap: 12px;
+    align-items: start;
+}
+
+.timeline__dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+    margin-top: 6px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 0 6px rgba(120, 200, 255, 0.1);
+}
+
+/* ===============================
+   Contact Form (Mobile-safe)
+================================ */
+
+.form {
+    margin-top: 12px;
+    display: grid;
+    gap: 14px;
+    width: 100%;
+}
+
+.field {
+    display: grid;
+    gap: 6px;
+}
+
+.field__label {
+    font-size: 13px;
+    opacity: 0.78;
+}
+
+.field__control {
+    width: 100%;
+    /* ✅ critical */
+    min-width: 0;
+    /* ✅ critical */
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 12px;
+    color: rgba(255, 255, 255, 0.92);
+    outline: none;
+
+    transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.field__control:focus {
+    border-color: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.field__control--textarea {
+    width: 100%;
+    resize: vertical;
+    min-height: 140px;
+}
+
+.form__actions {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 10px;
+}
+
+/* Mobile: make the CTA full-width like a proper form */
+@media (max-width: 520px) {
+    .form__actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .form__actions .btn {
+        width: 100%;
+    }
+}
+
+.form__hint {
+    margin: 8px 0 0;
+    font-size: 12px;
+    opacity: 0.68;
+}
+
+/* ===============================
+   Responsive grids
+================================ */
+
+@media (min-width: 900px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid--2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.why__spacer {
+    height: 26px;
+}
+
+.field__error {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: rgba(255, 160, 160, 0.95);
+}
+
+.field__control--invalid {
+  border-color: rgba(255, 120, 120, 0.65) !important;
+  background: rgba(255, 120, 120, 0.06) !important;
+}

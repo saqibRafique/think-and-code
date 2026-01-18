@@ -1,0 +1,117 @@
+<div class="container page">
+    <section class="hero">
+        <div class="hero__copy">
+            <h1 class="h1">{{ content.hero.headline }}</h1>
+            <p class="sub">{{ content.hero.subhead }}</p>
+
+            <div class="hero__actions">
+                <a class="btn btn--primary" href="#contact">{{ content.hero.ctaPrimary }}</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section section-panel">
+        <h2 class="h2">Our Services</h2>
+        <div class="grid">
+            <article class="card" *ngFor="let s of content.services">
+                <h3 class="h3">{{ s.title }}</h3>
+                <ul class="list">
+                    <li *ngFor="let b of s.bullets">{{ b }}</li>
+                </ul>
+            </article>
+        </div>
+    </section>
+
+    <section id="why-us" class="section section-panel why">
+        <h2 class="h2">Why Choose Us</h2>
+
+        <div class="grid grid--2">
+            <article class="card" *ngFor="let w of content.whyChooseUs">
+                <h3 class="h3">{{ w.title }}</h3>
+                <p class="p">{{ w.body }}</p>
+            </article>
+        </div>
+
+        <div class="why__spacer"></div>
+
+        <h2 class="h2">How We Work</h2>
+
+        <ol class="timeline">
+            <li class="timeline__item" *ngFor="let p of content.howWeWork">
+                <div class="timeline__dot" aria-hidden="true"></div>
+                <div class="timeline__body">
+                    <h3 class="h3">{{ p.title }}</h3>
+                    <p class="p">{{ p.body }}</p>
+                </div>
+            </li>
+        </ol>
+    </section>
+
+
+    <section id="tech-stack" class="section section-panel">
+        <h2 class="h2">Technology Stacks & Expertise</h2>
+        <div class="grid grid--2">
+            <article class="card" *ngFor="let t of content.techStacks">
+                <h3 class="h3">{{ t.title }}</h3>
+                <div class="chips">
+                    <span class="chip" *ngFor="let i of t.items">{{ i }}</span>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section id="contact" class="section section-panel">
+        <h2 class="h2">Contact Us</h2>
+
+        <div class="contactForm">
+            <div class="card">
+                <h3 class="h3">Send us a message</h3>
+                <p class="p">We typically respond within 1–2 business days.</p>
+
+                <form class="form" [formGroup]="contactForm" (ngSubmit)="submit()" novalidate>
+
+                    <label class="field">
+                        <span class="field__label">Name</span>
+                        <input class="field__control" type="text" formControlName="name" placeholder="Your name"
+                            [class.field__control--invalid]="nameCtrl.touched && nameCtrl.invalid" />
+                        <small class="field__error" *ngIf="nameCtrl.touched && nameCtrl.invalid">
+                            <span *ngIf="nameCtrl.errors?.['required']">Name is required.</span>
+                            <span *ngIf="nameCtrl.errors?.['minlength']">Name must be at least 2 characters.</span>
+                        </small>
+                    </label>
+
+                    <label class="field">
+                        <span class="field__label">Email</span>
+                        <input class="field__control" type="email" formControlName="email" placeholder="you@example.com"
+                            [class.field__control--invalid]="emailCtrl.touched && emailCtrl.invalid" />
+                        <small class="field__error" *ngIf="emailCtrl.touched && emailCtrl.invalid">
+                            <span *ngIf="emailCtrl.errors?.['required']">Email is required.</span>
+                            <span *ngIf="emailCtrl.errors?.['email']">Enter a valid email address.</span>
+                        </small>
+                    </label>
+
+                    <label class="field">
+                        <span class="field__label">Message</span>
+                        <textarea class="field__control field__control--textarea" rows="6" formControlName="message"
+                            placeholder="Tell us about your project..."
+                            [class.field__control--invalid]="messageCtrl.touched && messageCtrl.invalid"></textarea>
+                        <small class="field__error" *ngIf="messageCtrl.touched && messageCtrl.invalid">
+                            <span *ngIf="messageCtrl.errors?.['required']">Message is required.</span>
+                            <span *ngIf="messageCtrl.errors?.['minlength']">Message must be at least 10
+                                characters.</span>
+                        </small>
+                    </label>
+
+                    <div class="form__actions">
+                        <button class="btn btn--primary" type="submit" [disabled]="contactForm.invalid">
+                            Send Message
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+</div>

@@ -1,12 +1,12 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { routeFade } from './layout/shell/route-animations';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  animations: [routeFade],
 })
-export class App {
-  protected readonly title = signal('think-and-code');
-}
+export class App { }
